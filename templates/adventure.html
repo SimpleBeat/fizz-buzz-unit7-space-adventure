@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #434343;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            color: #cee2f3;
+            font-size: 2.5rem;
+        }
+
+        p, a {
+            color: #fce5cd;
+            font-size: 1.5rem;
+            line-height: 150%;
+        }
+
+        a {
+            color: #e9d1dc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #cee2f3;
+        }
+
+        li {
+            list-style-type: none;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .theEnd {
+            color: rgb(245, 45, 45);
+        }
+
+        audio {
+            width: 100px;
+            background-color: #434343;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+
+        <audio src="{{ track }}" controls></audio>
+
+        <img src="{{ image }}" style="margin: 10px; width: 99%;">
+
+        <p>{{ text }}</p>
+
+        {% if choices %}
+
+            <p>What do you want to do next:</p>
+
+            <ul>
+                {% for (page_name, choice) in choices %}
+                <li>
+                    <a href="{{url_for(page_name)}}">{{choice}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            
+            <p class="theEnd">THE END</p>
+
+
+            <p><a href="{{url_for('start')}}">Play again.</a></p>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
